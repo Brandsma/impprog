@@ -1,8 +1,8 @@
-/* file:        odd.c                                               */
+/* file:        recurrence.c                                        */
 /* author:      Abe Brandsma (email: abe.brandsma.6@student.rug.nl) */
-/* date:        12-09-2016                                          */
+/* date:        16-09-2016                                          */
 /* version:     1.0.0                                               */
-/* description: This program prints all odd numbers of a given number.  */
+/* description: This program prints all computation steps for solving a recursive function.  */
 
 // Includes libraries for functionalities
 #include <stdio.h>
@@ -15,32 +15,23 @@ int main(int argc, char *argv[]) {
 	int f;		//Value for output
 	int i, j; 	// Determines the amount of '(' and ')' every time.
 
+	i = 1;
 	scanf("%d", &n);
 	printf("f(%d)=", n);
 	if(n <= 100) {
-		labely:
 		while(!(f == 91)) {
-			i = 1;
-
-			while(n <= 100) {
-
-				n += 11;
-				i++;
+			// Determines which function it should solve and then solves it, also adds required notation.
+			n += 11;
+			i++;
 			
-
-				j = i;
-
-				while(j > 0) {
-					printf("f(");
-					j--;
-				}
-
-				if(n <= 100) {
-					goto labelx;
-				}
+			j = i;
+			//Function for when n <= 100
+			while(j > 0) {
+				printf("f(");
+				j--;
 			}
 
-			labelx:
+			j = i;
 
 			printf("%d", n);
 
@@ -49,48 +40,45 @@ int main(int argc, char *argv[]) {
 				i--;
 			}
 
+			i = j;
+
 			printf("=");
-			if(n <= 100){
-				goto labely;
-			}
-			n -= 10;
-			f = n - 10;
-			
-		}
-	} else {
-		f = n - 10;
-	}
+			// Label from line 77
+			labelx:
+			// Function for when n > 100
+			if(n > 100) {
 
-	printf("%d\n", f);
+				n -= 10;
+				i--;
+				j = i;
 
+				while(j > 0) {
+					printf("f(");
+					j--;
+				}
 
+				j = i;
+				printf("%d", n);
 
-
-
-
-/*
-	if(!(n > 100)) {
-	while(!(f == n - 10)) {
-		printf("f(");
-		i++;
-		if(n <= 100) {
-			n += 11;
-			printf("f(%d", n);
-			i++;
-		} else {
-			if(i > 0) {
 				while(i > 0) {
 					printf(")");
 					i--;
 				}
-			} else {
 				printf("=");
+				i = j;
 			}
+			f = n - 10;		
 		}
-	} 
 	} else {
-		printf("f(%d)=%d", n, f-10);
+		f = n - 10;
 	}
-*/
+	// Checks whether all function are solved, before giving final answer.
+	if(f == 91 && !(i == 1)) {
+		// Label is on line 46
+		goto labelx;
+	}
+	//Prints out final answer
+	printf("%d\n", f);
+
 	return 0;
 }
