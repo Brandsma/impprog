@@ -10,7 +10,19 @@
 #include <math.h>
 
 int main(int argc, char *argv[]) {
+	int a, b, x, answer, y;
 	scanf("%d %d", &a, &b);
-
+	x = b;
+	y = 0;
+	answer = 0;
+	while(1) {
+		if(y%2 == 0) {
+			x += y;
+			if(x >= b+a*a-1) break;
+			answer += x;
+		}
+		y++;
+	}
+	printf("%d\n", answer);
 	return 0;
 }

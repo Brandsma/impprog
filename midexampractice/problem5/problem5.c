@@ -9,8 +9,20 @@
 #include <stdlib.h>
 #include <math.h>
 
-int main(int argc, char *argv[]) {
-	scanf("%d %d", &a, &b);
+struct group {
+	int friendA;
+	int friendB;
+} 
 
+
+
+int main(int argc, char *argv[]) {
+	
+	int i;
+	scanf("%d %d",&n, &m);
+	for(i=0, i<m, i++) {
+		scanf("%d %d", &f1, &f2);
+
+	}
 	return 0;
 }

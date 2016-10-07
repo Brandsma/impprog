@@ -14,55 +14,52 @@ int secondx, secondy; // Coordinates of second point
 int thirdx, thirdy;   // Coordinates of third point
 int fourthx, fourthy; // Coordinates of fourth point
 
-int main(int argc, char *argv[]) {
+	int main(int argc, char *argv[]) {
 
 	scanf("%d %d %d %d %d %d %d %d", &firstx, &firsty, &secondx, &secondy, &thirdx, &thirdy, &fourthx, &fourthy);
 
 	// Determines whether the second point lies within the rectangle made by the third and fourth point
-	if(secondx >= thirdx && secondx <= fourthx) {
-		if(secondy >= thirdy && secondy <= fourthy) {
-			printf("overlap");
-		} 
+	if(secondx >= thirdx && secondx <= fourthx && secondy >= thirdy && secondy <= fourthy) {
+		printf("overlap\n");
 	} else {
-	if(secondx <= thirdx && secondx >= fourthx) {
-		if(secondy <= thirdy && secondy >= fourthy) {
-			printf("overlap"); 
-		}	
+	if(secondx <= thirdx && secondx >= fourthx && secondy <= thirdy && secondy >= fourthy) {
+		printf("overlap\n");
 	} else {
-	if(secondx <= thirdx && secondx >= fourthx) {
-		if(secondy >= thirdy && secondy <= fourthy) {
-			printf("overlap");
-		}
+	if(secondx <= thirdx && secondx >= fourthx && secondy >= thirdy && secondy <= fourthy) {
+		printf("overlap\n");
 	} else {
-	if(secondx >= thirdx && secondx <= fourthx) {
-		if(secondy <= thirdy && secondy >= fourthy) {
-			printf("overlap");
-		}
+	if(secondx >= thirdx && secondx <= fourthx && secondy <= thirdy && secondy >= fourthy) {
+		printf("overlap\n");
 	} else {
 		
 	// Determines whether the first point lies within the rectangle made by the third and fourth point
-	if(firstx >= thirdx && firstx <= fourthx) {
-		if(firsty >= thirdy && firsty <= fourthy) {
-			printf("overlap");
-		} 
+	if(firstx >= thirdx && firstx <= fourthx && firsty >= thirdy && firsty <= fourthy) {
+		printf("overlap\n");
 	} else {
-	if(firstx <= thirdx && firstx >= fourthx) {
-		if(firsty <= thirdy && firsty >= fourthy) {
-			printf("overlap"); 
-		}	
+	if(firstx <= thirdx && firstx >= fourthx && firsty <= thirdy && firsty >= fourthy) {
+		printf("overlap\n");	
 	} else {
-	if(firstx <= thirdx && firstx >= fourthx) {
-		if(firsty >= thirdy && firsty <= fourthy) {
-			printf("overlap");
-		}
+	if(firstx <= thirdx && firstx >= fourthx && firsty >= thirdy && firsty <= fourthy) {
+		printf("overlap\n");	
 	} else {
-	if(firstx >= thirdx && firstx <= fourthx) {
-		if(firsty <= thirdy && firsty >= fourthy) {
-			printf("overlap");
-		}
+	if(firstx >= thirdx && firstx <= fourthx && firsty <= thirdy && firsty >= fourthy) {
+		printf("overlap\n");
 	} else {
-		printf("no overlap");
-	}
 
+	// Determines whether the third point lies with the rectangle made by the first and second point
+	if(thirdx >= firstx && thirdx <= secondx && thirdy >= firsty && thirdy <= secondy) {
+		printf("overlap\n");
+	} else {
+	if(thirdx <= firstx && thirdx >= secondx && thirdy <= firsty && thirdy >= secondy) {
+		printf("overlap\n");	
+	} else {
+	if(thirdx <= firstx && thirdx >= secondx && thirdy >= firsty && thirdy <= secondy) {
+		printf("overlap\n");	
+	} else {
+	if(thirdx >= firstx && thirdx <= secondx && thirdy <= firsty && thirdy >= secondy) {
+		printf("overlap\n");
+	} else {
+		printf("no overlap\n");
+	}
 	return 0;
-} } } } } } } }
+} } } } } } } } } } } }

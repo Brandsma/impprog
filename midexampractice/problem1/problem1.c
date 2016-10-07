@@ -10,7 +10,14 @@
 #include <math.h>
 
 int main(int argc, char *argv[]) {
-	scanf("%d %d", &a, &b);
-
+	int a, b, n, x=0, count=1;
+	scanf("%d %d %d", &a, &b, &n);
+	while(count <= n) {
+		if(count%a == 0 && count%b == 0) {
+			x++;
+		}
+		count++;
+	}
+	printf("%d\n", x);
 	return 0;
 }
