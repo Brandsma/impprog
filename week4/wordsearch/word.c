@@ -1,8 +1,8 @@
-/* file:        sparse.c                                            */
+/* file:        word.c                                              */
 /* author:      Abe Brandsma (email: abe.brandsma.6@student.rug.nl) */
-/* date:        05-10-2016                                          */
+/* date:        11-10-2016                                          */
 /* version:     1.0.0                                               */
-/* description: This program tests whether or not two matrices are the same  */
+/* description: This program tries to solve a word search puzzle    */
 
 // Includes libraries for functionalities
 #include <stdio.h>
@@ -20,7 +20,7 @@ void *safeMalloc(int n) {
 }
 
 char **makeCharArray2D(char width, char height) {
-	char row, **arr;
+	unsigned char row, **arr;
 
 	arr = safeMalloc(height*sizeof(char *));
 	arr[0] = safeMalloc(width*height*sizeof(char));
@@ -51,7 +51,6 @@ int rowDirection(int dir) {
 }
 
 int colDirection(int dir) {
-	int rowDirection(int dir) {
 	switch(dir) {
 		case 0: return 1;		// North
 		case 1: return -1;		// South	
@@ -65,53 +64,75 @@ int colDirection(int dir) {
 	return 0;
 }
 
-}
 
 int main(int argc, char *argv[]) {
-	int n, wordlength;
+	int n, wordlength, j, m;
 	char ch;
-	char word[256];
+	char word[25];
 	scanf("%d", &n);
 	char **wordSearch = makeCharArray2D(n, n);
 	char **solutionGrid = makeCharArray2D(n, n);
 
 	for(int i = 0; i<n; i++) { // Initialize arrays
-		for(int j = 0; j<n; j++) {
-			scanf("%c", &ch);
-			wordSearch[i][j] = ch;
-			solutionGrid[i][j] = ch;
-		}
+		for(j = 0; j<n; j++) {
+				scanf("%c", &ch);
+				wordSearch[i][j] = ch;
+				solutionGrid[i][j] = ch;
+			}
 	}
 
-	while(word[0] != '.') { // Stop case
+	do { 
 		scanf("%s", word);
 		wordlength = strlen(word); // length of word
-		printf("%d", wordlength);
+		
 		for(int i = 0; i<n; i++) { 
 			for(int j = 0; j<n; j++) {
 
 				if(wordSearch[i][j] == word[0]) { // Does first letter match?
+					
+					for(int dir = 0; dir < 8; dir++) { // Determine direction
+						int rd = rowDirection(dir);	
+						int cd = colDirection(dir);
+						if(!(i+rd < 0 || i+rd >= n || j+cd < 0 || j+cd >= n)) { // Break, if outside array
 
-				for(int dir = 0; dir < 8; dir++) { // Determine direction
-					int rd = rowDirection(dir);	
-					int cd = colDirection(dir);
+						if(wordSearch[i+rd][j+cd] == word[1]) { // Move towards the direction if second letter matches
+							printf("Test Case 1.1\n");
+							m = 0;
+							for(int iter = 0; iter<wordlength; iter++) {
+								if(i+(rd*iter) < 0 || i+(rd*iter) >= n || j+(cd*iter) < 0 || j+(cd*iter) >= n) { // Break, if outside array
+									printf("Test Case 1.2\n");
+									break;
+								}
+								if(wordSearch[i+(rd*iter)][j+(cd*iter)] == word[iter]) m++;
 
-					if(wordSearch[i+rd][j+cd] == word[1]) {
-						for(int iter = 0; iter<wordlength; iter++) {
-							if(wordSearch[i+(iter*rd)][i+(iter*cd)] == word[iter]) {
-								
+								if(m == wordlength) {
+									for(int iteration = 0; iteration < wordlength; iteration++) {
+										solutionGrid[i+(rd*iteration)][j+(cd*iteration)] = '*';	
+									}
+								}
+
+								printf("Test Case 2\n");	// Remove the word from the solutionGrid
+		
 							}
+						}
+
 						}
 					}
 				}
+			}
+		}
+	} while(word[0] != '.'); // Stop case*/
 
-				}
+	for(int i = 0; i<n; i++) { // Print out the final word
+		for(j = 0; j<n; j++) {
+			if(solutionGrid[i][j] != '*') {
+				printf("%c", solutionGrid[i][j]);
 			}
 		}
 	}
+	printf("\n");
 
-
-	destroyCharArray2D(wordSearch);
+	destroyCharArray2D(wordSearch); // Free up dynamically allocated memory
 	destroyCharArray2D(solutionGrid);
 
 	return 0;
