@@ -10,7 +10,7 @@
 #define MAX64 9223372036854775807L /* 2ˆ63 -1 */
 #define MAXSIZE 100000000
 
-long C[MAXSIZE];
+int C[MAXSIZE];
 
 int lengthCollatz(long n) {
   if(n == 1) {

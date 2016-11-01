@@ -10,22 +10,22 @@
 #include <math.h>
 
 
-int solveExpressions(int n, int curlength) {
-	if(n == test) { // base case
-		return 1;
-	}
-	x++;
-	if (x<n) {
-		return 1 + solveExpressions(n+1, curlength+1);
+int printExpressions(int n, int curLength, int sum) {
+	if(curLength > n) { // Test whether or not the length of the expressions has reached the input
+		if(sum == n) {
+			return 1;
+		}	
 	} else {
-		return 1 - solveExpressions(n+1, curlength+1);
+		return printExpressions(n, curLength+1, sum+curLength) + printExpressions(n, curLength+1, sum-curLength);
 	}
+	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	int input;
+
 	scanf("%d", &input);
-	test = input;
-	printf("%d\n", solveExpressions(input, 0));
+	printf("%d\n", printExpressions(input, 2, 1));
+	
 	return 0;
 }
